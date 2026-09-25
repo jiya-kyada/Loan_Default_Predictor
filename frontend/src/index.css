@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+/* ===========================================================================
+   LoanIQ design tokens — light/dark theme via CSS custom properties.
+   Evolution of the original mint/green identity into a navy + emerald/teal
+   fintech palette. Component styles reference these vars so theme switching
+   never requires touching per-element inline styles.
+   =========================================================================== */
+:root,
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --bg: #F3F9F6;
+  --bg-soft: #EAF6EF;
+  --surface: #FFFFFF;
+  --surface-elevated: #FFFFFF;
+  --surface-soft: #E7F6EF;
+
+  --text: #0A2A3B;
+  --text-muted: rgba(10, 42, 59, 0.62);
+  --border: rgba(10, 42, 59, 0.12);
+
+  --navy: #0A2540;
+  --navy-soft: rgba(10, 37, 64, 0.06);
+
+  --primary: #14B88A;
+  --primary-strong: #0E9C74;
+  --primary-soft: #E1F6EE;
+  --primary-glow: rgba(20, 184, 138, 0.38);
+  --accent-green: #62D2A2;
+
+  --success: #16A34A;
+  --success-soft: #E7F8ED;
+  --warning: #C2790B;
+  --warning-soft: #FBF1DD;
+  --danger: #DC2626;
+  --danger-soft: #FDECEC;
+
+  --header-bg: rgba(243, 249, 246, 0.78);
+  --shadow-color: rgba(10, 42, 59, 0.16);
+  --scrollbar: rgba(10, 42, 59, 0.18);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg: #071019;
+  --bg-soft: #0B1720;
+  --surface: #101C28;
+  --surface-elevated: #15222F;
+  --surface-soft: rgba(45, 212, 167, 0.10);
+
+  --text: #EAF4F1;
+  --text-muted: rgba(234, 244, 241, 0.62);
+  --border: rgba(255, 255, 255, 0.09);
+
+  --navy: #0A1B2E;
+  --navy-soft: rgba(255, 255, 255, 0.05);
+
+  --primary: #2DD4A7;
+  --primary-strong: #4EEBC0;
+  --primary-soft: rgba(45, 212, 167, 0.14);
+  --primary-glow: rgba(45, 212, 167, 0.45);
+  --accent-green: #62D2A2;
+
+  --success: #34D399;
+  --success-soft: rgba(52, 211, 153, 0.14);
+  --warning: #FBBF24;
+  --warning-soft: rgba(251, 191, 36, 0.14);
+  --danger: #F87171;
+  --danger-soft: rgba(248, 113, 113, 0.14);
+
+  --header-bg: rgba(7, 16, 25, 0.72);
+  --shadow-color: rgba(0, 0, 0, 0.55);
+  --scrollbar: rgba(255, 255, 255, 0.18);
+}
+
+* {
+  transition: background-color 0.35s ease, border-color 0.35s ease, color 0.35s ease;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background-color: var(--bg);
+}
+
+#root {
+  min-height: 100svh;
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: var(--scrollbar); border-radius: 999px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
