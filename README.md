@@ -1,4 +1,4 @@
-# LoanIQ — Deployment Ready
+# LoanDefaultPredictor — Deployment Ready
 
 LoanIQ is a React/Vite frontend connected to a Flask API that serves the trained loan-default ML model.
 
