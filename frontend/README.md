@@ -1,16 +1,63 @@
-# React + Vite
+# LoanIQ Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📌 Overview
 
-Currently, two official plugins are available:
+The **LoanIQ Frontend** is the user interface of the LoanIQ application, built with **React + Vite**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+It allows users to enter applicant details, send them to the ML backend, and view the predicted loan-default risk in an interactive dashboard.
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Applicant and financial information form
+- Loan-default risk prediction interface
+- Interactive risk percentage/gauge
+- Risk result and prediction details
+- Light and dark mode
+- Responsive design
+- Backend health/status checking
+- Error handling for failed predictions
+- Modern fintech-style UI
 
-## Expanding the ESLint configuration
+## 📁 Structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```text
+frontend/
+├── public/          # Static assets
+├── src/
+│   ├── assets/      # Application assets
+│   ├── App.jsx      # Main application
+│   ├── main.jsx     # React entry point
+│   └── index.css    # Global styles
+├── package.json
+├── vite.config.js
+└── vercel.json
+```
+
+## 🚀 Run Locally
+
+```bash
+npm install
+npm run dev
+```
+
+The frontend normally runs at:
+
+```text
+http://localhost:5173
+```
+
+It communicates with the LoanIQ Flask backend through the `/predict` and `/health` API endpoints.
+
+## ☁️ Deployment
+
+The frontend is ready for deployment on **Vercel**.
+
+Typical settings:
+
+```text
+Root Directory: frontend
+Build Command: npm run build
+Output Directory: dist
+```
+
+For backend/API details, see [`../backend/README.md`](../backend/README.md).
