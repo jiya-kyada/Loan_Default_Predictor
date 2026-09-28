@@ -83,39 +83,6 @@ Users can enter information including:
 
 The application sends these values to the backend and displays the returned prediction in an interactive risk-analysis interface.
 
-### 🔎 Explainable Result Presentation
-After an analysis, LoanIQ presents:
-- Predicted default probability
-- Prediction class
-- High-risk indication
-- Key risk factors
-- A human-readable recommendation
-- Submitted applicant values used for the analysis
-
-> **Important:** The explanatory UI is designed to make the prediction easier to understand. It should not be interpreted as a direct display of the Logistic Regression model's fitted coefficients unless explicitly stated.
-
-### 🟢 Live ML Engine Status
-The frontend periodically checks the backend `/health` endpoint and displays whether the prediction engine is reachable.
-
-This means the status indicator reflects an actual API health check rather than a simulated "online" state.
-
-### 🌓 Light & Dark Mode
-- Modern fintech-inspired interface
-- Light and dark themes
-- Theme preference is persisted in the browser
-- Responsive layout for different screen sizes
-
-### 🎨 Modern UI/UX
-The frontend includes:
-- Animated risk gauge
-- Scroll-based reveal animations
-- Interactive cards
-- Responsive navigation
-- Applicant and financial profile sections
-- Visual ML pipeline
-- Risk-analysis result panel
-- Reduced-motion support for accessibility
-
 ---
 
 ## 🧠 Machine Learning Pipeline
@@ -397,26 +364,6 @@ http://localhost:8000/predict
 
 by default.
 
-### Optional frontend environment configuration
-
-Copy:
-
-```text
-frontend/.env.example
-```
-
-to:
-
-```text
-frontend/.env
-```
-
-Then configure:
-
-```env
-VITE_API_URL=http://localhost:8000/predict
-```
-
 ---
 
 # 🔌 API Documentation
@@ -623,138 +570,18 @@ When the user clicks **Predict Loan Risk**, the following happens:
 
 ---
 
-# 🧪 Error Handling
-
-The backend handles common API errors such as:
-
-- Missing request fields
-- Invalid categorical values
-- Invalid JSON request bodies
-- Unexpected prediction failures
-
-Example:
-
-```json
-{
-  "error": "Request body must be JSON"
-}
-```
-
-or:
-
-```json
-{
-  "error": "Missing fields: [...]"
-}
-```
-
-The frontend also provides an error state and allows the user to retry the analysis.
-
----
-
-# 🛠️ Troubleshooting
-
-## Frontend says the prediction engine is offline
-
-Check:
-
-1. Is the Flask server running?
-2. Does `/health` return `{"status":"ok"}`?
-3. Is `VITE_API_URL` pointing to the correct `/predict` endpoint?
-4. Is the backend `FRONTEND_ORIGIN` set to the correct frontend domain?
-5. If an environment variable was changed on Vercel, was the frontend redeployed?
-
----
-
-## CORS error
-
-For local development, the backend allows:
-
-```text
-http://localhost:5173
-http://127.0.0.1:5173
-```
-
-For production, set:
-
-```env
-FRONTEND_ORIGIN=https://YOUR-VERCEL-DOMAIN.vercel.app
-```
-
-Then redeploy the backend if required.
-
----
-
-## Render deployment fails
-
-Verify:
-
-```text
-Root Directory: backend
-Build Command: pip install -r requirements.txt
-Start Command: gunicorn --bind 0.0.0.0:$PORT app:app
-Health Check: /health
-```
-
-Also make sure `gunicorn` exists in:
-
-```text
-backend/requirements.txt
-```
-
----
-
-## Local frontend cannot connect to backend
-
-Make sure both services are running:
-
-```text
-Frontend → http://localhost:5173
-Backend  → http://localhost:8000
-```
-
-And:
-
-```env
-VITE_API_URL=http://localhost:8000/predict
-```
-
 ---
 
 # 📦 Deployment Checklist
 
 Before deploying:
 
-- [ ] Backend dependencies are listed in `requirements.txt`
-- [ ] Frontend dependencies are listed in `package.json`
+- [ ] Backend dependencies are installed
 - [ ] ML artifacts are present in `backend/`
-- [ ] `/health` works locally
-- [ ] `/predict` works locally
-- [ ] `VITE_API_URL` points to the correct backend
-- [ ] `FRONTEND_ORIGIN` points to the correct frontend
-- [ ] `.env` files containing local/private values are not committed
-- [ ] Frontend production build succeeds with `npm run build`
-- [ ] Render service uses the correct root directory and start command
-- [ ] Vercel uses `frontend` as the root directory
-
----
-
-# 🔮 Possible Future Improvements
-
-LoanIQ can be extended with:
-
-- Model comparison between Logistic Regression, Random Forest, XGBoost, etc.
-- SHAP-based explanations using the actual fitted model
-- Applicant history and prediction records
-- Authentication and role-based access
-- Database-backed application management
-- Model performance dashboard
-- ROC-AUC, precision, recall and confusion-matrix reporting
-- Batch loan-risk scoring through CSV upload
-- PDF risk reports
-- Model monitoring and drift detection
-- Automated retraining pipelines
-- Fairness and bias analysis across applicant groups
+- [ ] `/health` and `/predict` work locally
+- [ ] Frontend points to the correct backend
+- [ ] Frontend production build succeeds
+- [ ] Render and Vercel use the correct root directories
 
 ---
 
@@ -767,30 +594,6 @@ The prediction is a statistical estimate produced by a trained model and **shoul
 Real-world lending systems require additional validation, regulatory compliance, fairness testing, security controls, explainability requirements, and human review.
 
 ---
-
-# 👩‍💻 Development
-
-Typical development workflow:
-
-```bash
-# Backend
-cd backend
-python app.py
-
-# Frontend
-cd frontend
-npm run dev
-```
-
-After making changes:
-
-```bash
-git add .
-git commit -m "Update LoanIQ"
-git push
-```
-
-If Vercel and Render automatic deployments are enabled, pushing to the connected GitHub branch can trigger a new deployment.
 
 ---
 
