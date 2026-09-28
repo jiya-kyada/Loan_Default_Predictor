@@ -1,4 +1,4 @@
-# LoanIQ — AI-Powered Loan Default Risk Predictor
+# LoanIQ — Loan Default Risk Predictor
 
 > **LoanIQ** is a full-stack machine-learning web application that estimates the probability of loan default from an applicant's financial and personal profile.
 
